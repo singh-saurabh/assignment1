@@ -9,7 +9,13 @@
 using namespace std;
 
 int main()
-{
+{  
+    /*! \brief Get MAC address
+    *
+    *  The MAC address is stored in the file /sys/class/net/
+    *  In wlp58s0 in my system
+    *  We lookup the MAC address using the Socket libraries and print it here
+    */
     struct ifreq ifr;
     int fd = socket(PF_INET, SOCK_DGRAM, IPPROTO_IP);
     string ans;
