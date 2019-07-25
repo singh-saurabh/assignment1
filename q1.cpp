@@ -6,24 +6,36 @@
 using namespace std;
 
 int main(){
-
-	cout << "Parent process id: " << getpid() << endl << endl;
-
-	for(int i = 0; i < 2; i++){
+	cout << "Parent PID: " 
+		<< getpid() 
+		<< endl 
+		<< endl;
+	for(int iterator = 0; iterator < 2; iterator++){
 		if(fork() == 0){
-			cout << "Child " << (i+1) << " with pid "<< getpid() << " from parent pid " << getppid() << endl;
+			cout << "Child -> " 
+			<< (iterator+1) 
+			<< " with pid "
+			<< getpid() 
+			<< " from parent pid " 
+			<< getppid() 
+			<< endl;
 
-			for(int j = 0; j < 2; j++){
+			for(int childIterator = 0; childIterator < 2; childIterator++){
 				if(fork() == 0){
-					cout << "Grandchild " << (i*2 + 1 + j) << " with pid "<< getpid() << " from parent pid " << getppid() << endl;
-					exit(0);	// grandchild process terminates execution
+					cout << "Grandchild -> " 
+					<< (iterator*2 + 1 + childIterator) 
+					<< " with pid "
+					<< getpid() 
+					<< " from parent pid " 
+					<< getppid() 
+					<< endl;
+					exit(0);
 				}
-				wait(NULL);		// child process waits for grandchild process to complete  execution
+				wait(NULL);	
 			}
-			
-			exit(0);		// child process terminates execution
+			exit(0);
+			wait(NULL);
 		}
-		wait(NULL);			// parent process waits for child process to terminate execution
 		cout << endl;
 	}
 	
