@@ -6,6 +6,12 @@
 using namespace std;
 
 int main(){
+	/*! \brief prints the parent pid 
+	*
+	*  Once the PID is printed, then 2 children are made
+	*  and 2 grandchildren are also made. 
+	*  We also print their PIDs along with their parents PIDs
+	*/
 	cout << "Parent PID: " 
 		<< getpid() 
 		<< endl 
